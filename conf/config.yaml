@@ -1,0 +1,44 @@
+defaults:
+  - override hydra/launcher: joblib
+
+hydra:
+  launcher:
+    n_jobs: 24
+
+seed: 789243
+dir: '.'
+
+data:
+  three_cameras: True
+  dir: '/data/scratch/declan/data/spec_deblending'
+  n_dream_batches: 2000
+  dream_batch_size: 500
+  prop_blend: 0.5
+  min_blend_scale: 0.1
+  brightness_multiplier_desi: 1e6
+  generate: True
+
+training:
+  device: 'cuda:7'
+  epochs: 5000
+  lr: 1e-3
+  live_dream: False
+  replay: 1
+  batch_size: 256
+  save_every: 100
+
+encoder:
+  type: 'wavelet'
+  wavelet:
+    start: 3
+    stop: 8
+    wave: 'db1'
+  fourier:
+    n_fft: 50
+  dense3:
+    latent_dim: 128
+    hidden1: 512
+    hidden2: 256
+
+
+
